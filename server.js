@@ -1,8 +1,8 @@
 // Загружаем модуль http
 const http = require('http');
 
-const hostname = '127.0.0.1';
-const port = 3000;
+const hostname = 'node.js';//'127.0.0.1';
+const port = 80;
 
 // Создаем web-сервер с обработчиком запросов
 const server = http.createServer((req, res) => {
