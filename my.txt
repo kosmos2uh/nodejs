@@ -1,0 +1,46 @@
+Statistical profiling result from isolate-0000024E5CB4D480-v8.log, (8 ticks, 0 unaccounted, 0 excluded).
+
+ [Shared libraries]:
+   ticks  total  nonlib   name
+      5   62.5%          C:\Windows\SYSTEM32\ntdll.dll
+      3   37.5%          C:\Program Files\nodejs\node.exe
+
+ [JavaScript]:
+   ticks  total  nonlib   name
+
+ [C++]:
+   ticks  total  nonlib   name
+
+ [Summary]:
+   ticks  total  nonlib   name
+      0    0.0%    NaN%  JavaScript
+      0    0.0%    NaN%  C++
+      0    0.0%    NaN%  GC
+      8  100.0%          Shared libraries
+
+ [C++ entry points]:
+   ticks    cpp   total   name
+
+ [Bottom up (heavy) profile]:
+  Note: percentage shows a share of a particular caller in the total
+  amount of its parent calls.
+  Callers occupying less than 1.0% are not shown.
+
+   ticks parent  name
+      5   62.5%  C:\Windows\SYSTEM32\ntdll.dll
+      1   20.0%    C:\Program Files\nodejs\node.exe
+      1  100.0%      Function: ~setup_hrtime internal/process.js:70:22
+      1  100.0%        Function: ~startup bootstrap_node.js:12:19
+      1  100.0%          Function: ~<anonymous> bootstrap_node.js:10:10
+
+      3   37.5%  C:\Program Files\nodejs\node.exe
+      2   66.7%    C:\Program Files\nodejs\node.exe
+      1   50.0%      Function: ~runInThisContext bootstrap_node.js:495:28
+      1  100.0%        Function: ~NativeModule.compile bootstrap_node.js:584:44
+      1  100.0%          Function: ~NativeModule.require bootstrap_node.js:516:34
+      1  100.0%            Function: ~<anonymous> timers.js:1:11
+      1   50.0%      Function: ~promisify internal/util.js:204:19
+      1  100.0%        Function: ~<anonymous> internal/loader/resolveRequestUrl.js:1:11
+      1  100.0%          Function: ~NativeModule.compile bootstrap_node.js:584:44
+      1  100.0%            Function: ~NativeModule.require bootstrap_node.js:516:34
+
