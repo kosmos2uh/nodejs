@@ -1,6 +1,6 @@
 <h2>Json</h2>
 
-<table border=1 cellpadding=5 cellspacing=5>
+<table border=1 cellpadding=5 cellspacing=0 style="border-collapse: collapse">
     <tr>
         <th>First name</th>
         <th>Last name</th>
@@ -9,9 +9,9 @@
     {{#each this}}
     {{#each items}}
         <tr>
-            <th>{{first_name}}</th>
-            <th>{{last_name}}</th>
-            <th>{{email}}</th>
+            <td>{{first_name}}</td>
+            <td>{{last_name}}</td>
+            <td>{{email}}</td>
         </tr>
     {{/each}}
     {{/each}}
