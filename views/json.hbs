@@ -1,0 +1,18 @@
+<h2>Json</h2>
+
+<table border=1 cellpadding=5 cellspacing=5>
+    <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+    </tr>
+    {{#each this}}
+    {{#each items}}
+        <tr>
+            <th>{{first_name}}</th>
+            <th>{{last_name}}</th>
+            <th>{{email}}</th>
+        </tr>
+    {{/each}}
+    {{/each}}
+</table>

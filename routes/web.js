@@ -21,4 +21,11 @@ router.get('/about', (req, res) => {
   res.send('About page');
 });
 
+router.get('/json', (req, res) => {
+    var json = '{"param1": "value1", "param2": "value2", "param3":{"param4": "value4", "param5": "value5"}}';
+    var fs = require('fs');
+    json = JSON.parse(fs.readFileSync('./public/json.json', 'utf8'));
+    res.render('json', {json: json});
+});
+
 module.exports = router;
