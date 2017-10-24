@@ -1,0 +1,27 @@
+{
+    "app": {
+      "port": 80,
+      "host": "node.js",
+      "appTitle": "Janus Project",
+      "slogan": "Come With Me Now!"
+    },
+    
+    "session": {
+      "secret": "secret_key",
+      "key": "cid",
+      "cookie": {
+        "path": "/",
+        "httpOnly": true,
+        "maxAge": null
+      }
+    },
+    
+    "transport": {
+      "host": "smtp.gmail.com",
+      "port": 465,
+      "secure": true,
+      "user": "janusnic@gmail.com",
+      "pass": "egpifjiaqkndnisq"
+    }
+}
+  
