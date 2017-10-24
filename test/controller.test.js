@@ -1,5 +1,5 @@
 var expect = require('chai').expect; // importing library to create the test
-var addOp = require('../controllers/operations.js').addOp; // importing the function that we are going to evaluate
+var addOp = require('../controllers/operations.js.bak').addOp; // importing the function that we are going to evaluate
 
 describe('Math', function(){
   // Parent declaration test
