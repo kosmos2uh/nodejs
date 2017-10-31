@@ -9,7 +9,7 @@ body {
     margin:0;
     padding:0;
 }
-ol, ul {
+ol, ul{
 	list-style: none;
 }
 blockquote, q {
@@ -38,6 +38,11 @@ a{
 a:hover, a:focus{
     color: #5fcf80;
 }
+
+.alist{
+    color: #555;
+}
+
 /***********************************
 Navigation bar
 ************************************/

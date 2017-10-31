@@ -1,4 +1,4 @@
-module.exports = (app, express) => {
+  const express = require('express');
   const path = require('path');
   const logger = require('morgan');
   const favicon = require('serve-favicon');
@@ -7,7 +7,11 @@ module.exports = (app, express) => {
   const session = require('express-session');
   const bodyParser = require('body-parser');
   const config = require('../config');
+  const mongoose = require('../database/db');
   const index = require('../routes');
+  const MongoStore = require('connect-mongo')(session);
+
+  const app = express();
 
   // Page Rendering
   app.set('views', path.join(__dirname, '../views'));
@@ -36,7 +40,13 @@ module.exports = (app, express) => {
     cookie: config.get('session:cookie'),
     resave: true,
     saveUninitialized: true,
+    store: new MongoStore({
+      url: config.get('db:connection') + '/' + config.get('db:name'),
+      autoReconnect: true,
+      clear_interval: 3600
+    })
   }));
+
 
   // Public directory
   app.use(express.static(path.join(__dirname, '../public')));
@@ -75,4 +85,5 @@ module.exports = (app, express) => {
       error: { },
     });
   });
-};
+
+module.exports = app;

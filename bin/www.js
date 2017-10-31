@@ -1,17 +1,9 @@
-const express = require('express');
-
-const app = express();
-require('../middleware')(app, express);
-
+const app = require('../middleware');
 const config = require('../config');
 
-const port = config.get('app:port');
-
-app.listen(port, (err) => {
-
+app.listen(config.get('app:port'), config.get('app:host'), (err) => {
   if (err) {
     return console.log('something bad happened', err);
   }
-
-  console.log(`server is listening on ${port}`);
+  console.log(`Server running at http://${config.get('app:host')}:${config.get('app:port')}/`);
 });

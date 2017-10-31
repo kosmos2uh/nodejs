@@ -1,15 +1,26 @@
-const config = require('../config');
+const models = require('../models');
 
 module.exports = {
+
   index: (req, res) => {
-    res.render('blog/index', { appTitle: config.get('app:appTitle'), title: 'Blog', data: '' });
+    models.Post.all((err, docs) => {
+        res.render('blog/index', { 
+            title: 'Post List',
+            posts: docs 
+        });
+    });
+    // res.render('blog/index', { title: 'Blog List', data: '' });
   },
 
-  list: (req, res) => {
-    res.render('blog/list', { appTitle: config.get('app:appTitle'), title: 'Blog List', data: '' });
-  },
+  show: (req, res) => {
 
-  detail: (req, res) => {
-    res.render('blog/detail', { appTitle: config.get('app:appTitle'), title: 'Blog Detail', data: '' });
+    models.Post.detail(req.params.id, (err, docs) => {
+        res.render('blog/show', { 
+            title: 'Post Detail',
+            post: docs 
+        });
+    });
+    // res.render('blog/show', { title: 'Show Blog', data: '' });
   },
-};
+  
+}

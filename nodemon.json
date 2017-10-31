@@ -13,7 +13,12 @@
       },
       "watch": [
         "test/",
-        "bin/"
+        "bin/",
+        "config/",
+        "controllers/",
+        "middleware/",
+        "routes/",
+        "views/"
       ],
       "env": {
         "NODE_ENV": "development"
