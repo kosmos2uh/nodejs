@@ -24,13 +24,13 @@ index: (req, res, next) => {
   models.Post.find()
     .sort([['title', 'ascending']])
     .exec((err, post_list) => {
-      if (err) {
-        return next(err);
+      if (err) { 
+        return next(err); 
         }
-      res.render('admin/posts/index',
-        {
-          title: 'Posts List',
-          post_list: post_list,
+      res.render('admin/posts/index', 
+        { 
+          title: 'Posts List', 
+          post_list: post_list, 
           breadcrumb: 'Posts List'
         });
   });

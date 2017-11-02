@@ -54,15 +54,19 @@ category_create_post: (req, res, next) => {
     if (errors) {
         res.render('admin/categories/form', { title: 'Category Create', breadcrumb: 'Add New Category', category: category, errors: errors});
     return;
-    } else {
+    }
+    else {
         models.Category.findOne({ 'name': req.body.name })
             .exec( function(err, found_category) {
                  console.log('found_category: '+found_category);
                  if (err) { return next(err); }
 
                  if (found_category) {
+
                      res.redirect(found_category.url);
-                 } else {
+                 }
+                 else {
+
                      category.save(function (err) {
                        if (err) { return next(err); }
 

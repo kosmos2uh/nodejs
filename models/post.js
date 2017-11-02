@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
 
-    title: { type: String, required: true },
-    content: { type: String, required: true },
-    status: {
+    title:  { type: String, required: true },
+    content: { type: String, required: true},
+    status: { 
       type: String,
       enum: ['published', 'private', 'draft'],
       default: 'draft'
