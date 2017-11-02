@@ -1,49 +1,64 @@
 {
-  "name": "nodejs",
+  "name": "node-dev",
   "version": "1.0.0",
-  "description": "first project",
-  "main": "play.js",
+  "description": "NodeJs Project",
+  "main": "index.js",
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "node ./bin/server.js",
     "test": "mocha test",
     "nodemon": "nodemon --config nodemon.json --exec npm run start"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kosmos2uh/nodejs.git"
+    "url": "git+https://github.com/couchjanus/node-dev.git"
   },
-  "author": "kosmos2uh <kosmos2uh@gmail.com>",
-  "license": "ISC",
+  "keywords": [
+    "node",
+    "javascript"
+  ],
+  "author": "couchjanus <couchjanus@gmail.com>",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kosmos2uh/nodejs/issues"
+    "url": "https://github.com/couchjanus/node-dev/issues"
   },
-  "homepage": "https://github.com/kosmos2uh/nodejs#readme",
+  "homepage": "https://github.com/couchjanus/node-dev#readme",
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-http": "^3.0.0",
     "debug": "^3.1.0",
-    "eslint": "^4.10.0",
+    "eslint": "^4.9.0",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-import": "^2.7.0",
     "jshint": "^2.9.5",
     "mocha": "^4.0.1",
     "nodemon": "^1.12.1",
     "superagent": "^3.6.3"
   },
   "dependencies": {
+    "acl": "^0.4.11",
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "connect-mongo": "^2.0.0",
     "cookie-parser": "^1.4.3",
+    "crypto": "^1.0.1",
+    "csurf": "^1.9.0",
+    "dotenv": "^4.0.0",
     "express": "^4.16.2",
+    "express-flash": "0.0.2",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
-    "express-validator": "^4.3.0",
+    "express-validator": "^4.2.1",
+    "helmet": "^3.9.0",
+    "moment-timezone": "^0.5.14",
     "mongodb": "^2.2.33",
-    "mongoose": "^4.12.4",
+    "mongoose": "^4.12.6",
     "morgan": "^1.9.0",
     "nconf": "^0.8.5",
-    "nodemailer": "^4.3.1",
+    "nodemailer": "^4.2.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "pug": "^2.0.0-rc.4",
+    "sendgrid": "^5.2.3",
     "serve-favicon": "^2.4.5"
   }
 }

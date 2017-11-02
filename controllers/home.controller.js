@@ -11,7 +11,7 @@ module.exports = {
             posts: docs 
         });
     });
-    // res.render('home/index', { appTitle: config.get('app:appTitle'), title: 'Home Page', data: '' });
+    // res.render('home/index', { appTitle: config.get('app:appTitle'), title: 'Home Page', data: '', docs:[] });
   },
 
   about: (req, res) => {

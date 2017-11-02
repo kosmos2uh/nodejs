@@ -2,3 +2,5 @@
 node_modules
 jspm_packages
 *.bak
+/.env.dev
+/.env
