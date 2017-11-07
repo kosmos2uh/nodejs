@@ -3,7 +3,7 @@ const router = require('express').Router();
 // const authentication = require('../middleware/authentication');
 
 // const passportLinkedIn = require('../middleware/auth/linkedin');
-// const passportGithub = require('../middleware/auth/github');
+const passportGithub = require('../middleware/auth/github');
 const passportTwitter = require('../middleware/auth/twitter');
 
 // router.get('/linkedin', passportLinkedIn.authenticate('linkedin'));
@@ -15,14 +15,14 @@ const passportTwitter = require('../middleware/auth/twitter');
 //     res.json(req.user);
 //   });
 
-// router.get('/github', passportGithub.authenticate('github', { scope: [ 'user:email' ] }));
+router.get('/github', passportGithub.authenticate('github', { scope: [ 'user:email' ] }));
 
-// router.get('/github/callback',
-//   passportGithub.authenticate('github', { failureRedirect: '/user/login' }),
-//   function(req, res) {
-//     // Successful authentication
-//     res.json(req.user);
-//   });
+router.get('/github/callback',
+  passportGithub.authenticate('github', { failureRedirect: '/user/login' }),
+  function(req, res) {
+    // Successful authentication
+    res.json(req.user);
+  });
 
 // router.get('/google', passportGoogle.authenticate('google', { scope: [ 'user:email' ] }));
 
@@ -44,7 +44,8 @@ const passportTwitter = require('../middleware/auth/twitter');
 
 router.get('/twitter', passportTwitter.authenticate('twitter'));
 
-router.get('/twitter/callback',
+router.get(
+  '/twitter/callback',
   passportTwitter.authenticate('twitter', { failureRedirect: '/user/login' }),
   function(req, res) {
     // Successful authentication

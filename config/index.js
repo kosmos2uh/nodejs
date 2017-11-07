@@ -36,7 +36,7 @@ module.exports = {
     github: {
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        callbackURL: "http://127.0.0.1:3000/auth/github/callback"
+        callbackURL: "http://node.js/auth/github/callback"
       },
     
     linkedin: {

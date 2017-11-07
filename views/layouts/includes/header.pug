@@ -18,7 +18,7 @@ body
             a(href='/about') About
           li
             a(href='/contact') Contact
-          
+
           if (!user)
             li
               a(href='/user/login') Signin
@@ -26,7 +26,7 @@ body
               a(href='/user/register') Signup
           else
             li
-            a(href='/user/profile') Profile
+              a(href='/user/profile') Profile
             li
               a(href='/user/logout') Logout
           li.btn-trial

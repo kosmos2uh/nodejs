@@ -19,7 +19,10 @@ passport.use(new GitHubStrategy({
 
     let updates = {
       name: profile.displayName,
-      socID: profile.id
+      socID: profile.id,
+      email: profile.id + '@github.com',
+      password: (new Number(Math.random() * 100000000000).toFixed(0)).toString(),
+      isVerified: true,
     };
 
     let options = {

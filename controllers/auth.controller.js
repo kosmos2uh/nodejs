@@ -5,16 +5,16 @@ const models = require('../models');
 const moment = require('moment-timezone');
 
 exports.login = {
-	get: (req, res) => {
-		if (req.isAuthenticated()) {
-			return res.redirect('/');
-		}
+    get: (req, res) => {
+        if (req.isAuthenticated()) {
+            return res.redirect('/');
+        }
 
-		res.render('users/login', { 
-			title: 'User Login', 
-			csrf: req.csrfToken() 
-		});
-	},
+        res.render('users/login', {
+            title: 'User Login',
+            csrf: req.csrfToken()
+        });
+    },
 	post: (req, res, next) => {
 		req.assert('email', 'Please provide a valid email address.').isEmail();
 		req.assert('password', 'Password cannot be blank.').notEmpty();
