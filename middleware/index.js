@@ -1,113 +1,115 @@
 const path = require('path');
 
-require('dotenv').config({ path:__dirname+'/../.env.dev' });
+require('dotenv').config({path:__dirname+'/../.env.dev'});
 
-const express = require('express');
+  const express = require('express');
 
-const logger = require('morgan');
-const favicon = require('serve-favicon');
-const expressValidator = require('express-validator');
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const bodyParser = require('body-parser');
-const config = require('../config');
-const mongoose = require('../database/db');
-const index = require('../routes');
-const MongoStore = require('connect-mongo')(session);
+  const logger = require('morgan');
+  const favicon = require('serve-favicon');
+  const expressValidator = require('express-validator');
+  const cookieParser = require('cookie-parser');
+  const session = require('express-session');
+  const bodyParser = require('body-parser');
+  const config = require('../config');
+  const mongoose = require('../database/db');
+  const index = require('../routes');
+  const MongoStore = require('connect-mongodb-session')(session);
 
-const passport = require('passport');
+  const passport = require('passport');
 
-const csrf = require('csurf');
-const flash = require('express-flash');
+  const csrf = require('csurf');
+  const flash = require('express-flash');
 
-const app = express();
+  const app = express();
 
-// Page Rendering
-app.set('views', path.join(__dirname, '../views'));
-app.set('view engine', 'pug');
+  // Page Rendering
+  app.set('views', path.join(__dirname, '../views'));
+  app.set('view engine', 'pug');
 
-// Favicon
-app.use(favicon(path.join(__dirname, '../public', 'favicon.ico')));
+  // Favicon
+  app.use(favicon(path.join(__dirname, '../public', 'favicon.ico')));
 
-// Logger
-if (app.get('env') === 'development') {
+  // Logger
+  if (app.get('env') === 'development') {
     app.use(logger('dev'));
-}
+  }
 
 
-app.use(bodyParser.json());
+  app.use(bodyParser.json());
+  
+  app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(expressValidator());
+  
+  // Session
+  app.use(cookieParser());
 
-app.use(expressValidator());
-
-// Session
-app.use(cookieParser());
-
-app.use(session({
+  app.use(session({
     name: config.session.name,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     secret: config.session.secret,
     key: config.session.key,
     store: new MongoStore({ url: config.db.uri, autoReconnect: true, clear_interval: 3600 }),
     cookie: {
-        httpOnly: true,
-        maxAge: 1000 * 60 * 60,
-        secure: 'auto'
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60,
+      secure: 'auto'
     }
-}));
+  }));
 
-// csrf protection MUST be defined after cookieParser and session middleware
-app.use(csrf({ cookie: true }));
+  // csrf protection MUST be defined after cookieParser and session middleware
+  app.use(csrf({ cookie: true }));
 
-// passport needs to come after session initialization
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(flash());
+  app.use(flash());
 
-// Public directory
-app.use(express.static(path.join(__dirname, '../public')));
+  // passport needs to come after session initialization
+  app.use(passport.initialize());
+  app.use(passport.session());
+  
 
-// pass the user object to all responses
-app.use(function(req, res, next) {
+  // Public directory
+  app.use(express.static(path.join(__dirname, '../public')));
+
+  // pass the user object to all responses
+  app.use(function(req, res, next) {
     res.locals.user = req.user;
     next();
-});
+  });
 
-// Routing
+  // Routing
 
-app.use('/', index);
+  app.use('/', index);
 
-// Error handing
-// catch 404 and forward to error handler
-app.use((req, res, next) => {
+  // Error handing
+  // catch 404 and forward to error handler
+  app.use((req, res, next) => {
     const err = new Error('Not Found');
     err.status = 404;
     next(err);
-});
+  });
 
-// error handlers
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
+  // error handlers
+  // development error handler
+  // will print stacktrace
+  if (app.get('env') === 'development') {
     app.use((err, req, res, next) => {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err,
-        });
+      res.status(err.status || 500);
+      res.render('error', {
+        message: err.message,
+        error: err,
+      });
     });
-}
+  }
 
-// production error handler
-// no stacktraces leaked to user
-app.use((err, req, res, next) => {
+  // production error handler
+  // no stacktraces leaked to user
+  app.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.render('error', {
-        message: err.message,
-        error: { },
+      message: err.message,
+      error: { },
     });
-});
+  });
 
 module.exports = app;

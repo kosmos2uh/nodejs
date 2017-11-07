@@ -37,5 +37,13 @@ block content
                           input.checkbox-input(type='checkbox', name='isVerified', checked=user.checked )
 
                     tr.form-group
+                      td
+                        label Role:
+                      td 
+                        - lists = ['user', 'manager', 'admin']
+                        select(name='role', id="role", class='custom-select')
+                          for list in lists
+                            option(value=list, selected =(undefined===user ? '' : (user.role===list)?  'selected':false))=list
+                    tr.form-group
                       td(colspan=2)
                          button.btn.btn-primary(type='submit') Submit

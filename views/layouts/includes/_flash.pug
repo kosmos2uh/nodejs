@@ -6,15 +6,16 @@ if (typeof messages !== 'undefined')
         .card-block
           .card-header
             i.fa.fa-table 
-            | !{error.msg}
+            |  !{error.msg}
 
   if messages.info
     each info in messages.info
       .card-header
-        i.fa.fa-table
+        i.fa.fa-table 
         | !{info.msg}
+    
   if messages.success
     each success in messages.success
       .card-header
-        i.fa.fa-table
+        i.fa.fa-table 
         | !{success.msg}

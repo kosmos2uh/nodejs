@@ -29,12 +29,12 @@ const userSchema = new mongoose.Schema(
     default: false 
   },
   
-  // passwordResetToken: { 
-  //   type: String, 
-  //   unique: true 
-  // },
+  passwordResetToken: { 
+    type: String, 
+    unique: true 
+  },
 
-  // passwordResetExpires: Date,
+  passwordResetExpires: Date,
 
   loginAttempts: { 
     type: Number, 
@@ -44,6 +44,9 @@ const userSchema = new mongoose.Schema(
 
   lockUntil: Date,
   role: String,
+
+  name: String,
+  socID: String
  
   }
 );
