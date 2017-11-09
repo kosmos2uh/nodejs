@@ -43,9 +43,18 @@ const userSchema = new mongoose.Schema(
   },
 
   lockUntil: Date,
-  role: String,
+  
+  roles: {
+        type:    Array,
+        default: ['user']
+    },
 
-  name: String,
+  profile: {
+        name:     String,
+        gender:   String,
+        zipCode:  String
+    },
+  
   socID: String
  
   }

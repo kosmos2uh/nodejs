@@ -61,5 +61,12 @@ module.exports = {
       clientSecret: process.env.GOOGLE_CLIENT_ID,
       callbackURL: "http://localhost:3000/auth/facebook/callback"
       },
+    transport: {
+        smtpHost: process.env.SMTP_HOST,
+        smtpPort: process.env.SMTP_PORT,
+        smtpSecure: true,
+        smtpUser: process.env.SMTP_USER,
+        smtpPass: process.env.SMTP_PASSWORD
+    },
 
 };

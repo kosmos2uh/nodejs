@@ -11,6 +11,7 @@ require('dotenv').config({path:__dirname+'/../.env.dev'});
   const session = require('express-session');
   const bodyParser = require('body-parser');
   const config = require('../config');
+  // const aclify = require('aclify');
   const mongoose = require('../database/db');
   const index = require('../routes');
   const MongoStore = require('connect-mongodb-session')(session);
@@ -63,6 +64,7 @@ require('dotenv').config({path:__dirname+'/../.env.dev'});
 
   app.use(flash());
 
+  
   // passport needs to come after session initialization
   app.use(passport.initialize());
   app.use(passport.session());

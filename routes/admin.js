@@ -3,6 +3,7 @@ const controllers = require('../controllers/admin');
 // const acl = require('../middleware/authorization').getAcl();
 const shared = require('../shared');
 
+// router.get('/', acl.middleware(), controllers.dashboard_controller.index);
 router.get('/', controllers.dashboard_controller.index);
 
 router.get('/post/create', controllers.posts_controller.post_create_get);
