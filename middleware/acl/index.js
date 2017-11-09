@@ -171,12 +171,12 @@ class ACL {
         this.rules = rules;
     }
 
-    loadRulesFile(file=false, encoding='utf8') {
+    loadRulesFile(file = false, encoding = 'utf8') {
         try {
-          this.rules = yaml.safeLoad(fs.readFileSync( file, encoding ));
-          return this.rules;  
+          this.rules = yaml.safeLoad(fs.readFileSync (file, encoding));
+          return this.rules;
         } catch (e) {
-          if (!file) throw new Error(`Not a valid file path`);
+          if (!file) throw new Error('Not a valid file path');
           console.log(e);
         }
     }

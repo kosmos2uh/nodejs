@@ -7,6 +7,6 @@ router.use('/admin', [acl.check], require('./admin'));
 // router.use('/admin', require('./admin'));
 router.use('/user', require('./user'));
 router.use('/auth', require('./auth'));
-router.use('/contact', require('./contact'));
+router.use('/contact', [acl.check], require('./contact'));
 
 module.exports = router;
