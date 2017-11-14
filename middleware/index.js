@@ -10,6 +10,7 @@ require('dotenv').config({path:__dirname+'/../.env.dev'});
   const cookieParser = require('cookie-parser');
   const session = require('express-session');
   const bodyParser = require('body-parser');
+  const multer = require('multer');
   const config = require('../config');
   // const aclify = require('aclify');
   const mongoose = require('../database/db');
@@ -37,11 +38,11 @@ require('dotenv').config({path:__dirname+'/../.env.dev'});
 
 
   app.use(bodyParser.json());
-  
-  app.use(bodyParser.urlencoded({ extended: false }));
+
+  app.use(bodyParser.urlencoded({ extended: true }));
 
   app.use(expressValidator());
-  
+
   // Session
   app.use(cookieParser());
 
@@ -59,16 +60,33 @@ require('dotenv').config({path:__dirname+'/../.env.dev'});
     }
   }));
 
+  let storage = multer.diskStorage({
+    destination: function(req, file, callback) {
+      callback(null, path.join(__dirname, '../public/uploads'));
+    },
+    filename: function(req, file, callback) {
+      callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+  });
+
+  let upload = multer({ storage: storage });
+
+  app.use(multer(upload).single('file'));
+
   // csrf protection MUST be defined after cookieParser and session middleware
   app.use(csrf({ cookie: true }));
 
+  app.use(function(req, res, next){
+      res.locals._csrf = req.csrfToken();
+      next();
+  });
+
   app.use(flash());
 
-  
   // passport needs to come after session initialization
   app.use(passport.initialize());
   app.use(passport.session());
-  
+
 
   // Public directory
   app.use(express.static(path.join(__dirname, '../public')));

@@ -36,7 +36,7 @@ category_detail: (req, res, next) => {
 },
 
 category_create_get: (req, res, next) => {
-    res.render('admin/categories/form', { title: 'Create Category', breadcrumb: 'Add New Category'});
+    res.render('admin/categories/form', { title: 'Create Category', breadcrumb: 'Add New Category', csrf: req.csrfToken(),});
 },
 
 category_create_post: (req, res, next) => {
@@ -127,7 +127,7 @@ category_update_get: (req, res, next) => {
     models.Category.findById(req.params.id, (err, category) => {
         if (err) { return next(err); }
 
-        res.render('admin/categories/form', { title: 'Update Category', breadcrumb: 'Edit Category', category: category });
+        res.render('admin/categories/form', { title: 'Update Category', breadcrumb: 'Edit Category', category: category, csrf: req.csrfToken(), });
     });
 
 },

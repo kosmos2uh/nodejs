@@ -23,6 +23,7 @@ block content
                 form(method='POST' action='')
                   tbody
                     tr.form-group
+                      input(type="hidden", name="_csrf", value=csrf)
                       td
                         label(for='name') Category:
                       td 

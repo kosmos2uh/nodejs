@@ -22,21 +22,14 @@ block content
     .form-group
       .col-sm-offset-3.col-sm-7
         hr
-  .container
-    .row
-      .text-center
-        a.btn.btn-green(href='/auth/facebook')
-          i.fa.fa-2x.fa-facebook
-        | &nbsp;
-        a.btn.btn-green(href='/auth/twitter')
-          i.fa.fa-2x.fa-twitter
-        | &nbsp;
-        a.btn.btn-green(href='/auth/google')
-          i.fa.fa-2x.fa-google-plus
-        | &nbsp;
-        a.btn.btn-green(href='/auth/linkedin')
-          i.fa.fa-2x.fa-linkedin
-        | &nbsp;
-        a.btn.btn-green(href='/auth/github')
-          i.fa.fa-2x.fa-github
-        hr
+    .form-group
+      .col-sm-offset-3.col-sm-7
+        a.btn.btn-block.btn-facebook.btn-social(href='/auth/facebook')
+          i.fa.fa-facebook
+          | Sign in with Facebook
+        a.btn.btn-block.btn-twitter.btn-social(href='/auth/twitter')
+          i.fa.fa-twitter
+          | Sign in with Twitter
+        a.btn.btn-block.btn-google.btn-social(href='/auth/google')
+          i.fa.fa-google-plus
+          | Sign in with Google

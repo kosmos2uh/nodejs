@@ -24,16 +24,39 @@ index: (req, res, next) => {
   models.Post.find()
     .sort([['title', 'ascending']])
     .exec((err, post_list) => {
-      if (err) { 
-        return next(err); 
+      if (err) {
+        return next(err);
         }
-      res.render('admin/posts/index', 
-        { 
-          title: 'Posts List', 
-          post_list: post_list, 
+      res.render('admin/posts/index',
+        {
+          title: 'Posts List',
+          post_list: post_list,
           breadcrumb: 'Posts List'
         });
   });
+},
+
+list: (req, res, next) => {
+
+  var perPage = 2
+  var page = req.params.page || 1
+
+  models.Post
+        .find({})
+        .skip((perPage * page) - perPage)
+        .limit(perPage)
+        .exec(function(err, posts) {
+            models.Post.count().exec(function(err, count) {
+                if (err) return next(err)
+                res.render('admin/posts/list', {
+                    title: 'Posts List',
+                    breadcrumb: 'Posts List',
+                    posts: posts,
+                    current: page,
+                    pages: Math.ceil(count / perPage)
+                });
+            });
+        });
 },
 
 post_detail: (req, res, next) => {
@@ -44,14 +67,14 @@ post_detail: (req, res, next) => {
         .populate('category')
         .exec(callback);
       },
-    }, 
+    },
       (err, results) => {
-        if (err) { 
-            return next(err); 
+        if (err) {
+            return next(err);
         }
-        res.render('admin/posts/detail', 
-            { 
-              title: 'Post Detail', 
+        res.render('admin/posts/detail',
+            {
+              title: 'Post Detail',
               post:  results.post,
               breadcrumb: 'Post Detail'
             });
@@ -65,14 +88,15 @@ post_create_get: (req, res, next) => {
             models.Category.find(callback);
         },
     }, (err, results) => {
-        if (err) { 
-            return next(err); 
+        if (err) {
+            return next(err);
         }
-        res.render('admin/posts/form', 
-          { 
-            title: 'Create New Post', 
+        res.render('admin/posts/form',
+          {
+            title: 'Create New Post',
             categories:results.categories,
-            breadcrumb: 'Create New Post' 
+            csrf: req.csrfToken(),
+            breadcrumb: 'Create New Post'
           });
     });
 },
@@ -81,9 +105,9 @@ post_create_post: function(req, res, next) {
     req.checkBody('title', 'Title must not be empty.').notEmpty();
     req.checkBody('content', 'Content must not be empty').notEmpty();
     req.sanitize('title').escape();
-    req.sanitize('content').escape();
+    // req.sanitize('content').escape();
     req.sanitize('title').trim();
-    req.sanitize('content').trim();
+    // req.sanitize('content').trim();
     req.sanitize('category').escape();
 
     var post = new models.Post(
@@ -180,7 +204,10 @@ post_update_get: function(req, res, next) {
                 }
             }
             console.log("results.post ", results.post);
-            res.render('admin/posts/form', { title: 'Update post', categories:results.categories, post: results.post });
+            res.render('admin/posts/form', {
+              title: 'Update post', categories:results.categories,
+              csrf: req.csrfToken(),
+              post: results.post });
         });
 
 },
@@ -194,9 +221,9 @@ post_update_post: function(req, res, next) {
     req.checkBody('content', 'Summary must not be empty').notEmpty();
 
     req.sanitize('title').escape();
-    req.sanitize('content').escape();
+    // req.sanitize('content').escape();
     req.sanitize('title').trim();
-    req.sanitize('content').trim();
+    // req.sanitize('content').trim();
     req.sanitize('status').escape();
     req.sanitize('category').escape();
 
@@ -209,9 +236,9 @@ post_update_post: function(req, res, next) {
         category: (typeof req.body.category==='undefined') ? [] : req.body.category.split(","),
         _id:req.params.id
        });
-    
 
-    
+
+
     var errors = req.validationErrors();
     if (errors) {
         async.parallel({

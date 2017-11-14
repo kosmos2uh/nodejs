@@ -11,10 +11,6 @@
                 - GET
                 - POST
         -
-            resource: contact
-            action: allow
-            methods: '*'
-        -
             resource: profile
             action: allow
             methods:

@@ -4,7 +4,6 @@ const config = require('../config');
 exports.index = (req, res, next) => {
         res.render('contact/index', { 
             title: 'Contact Us',
-            csrf: req.csrfToken()
         });
 };
 
@@ -23,7 +22,7 @@ exports.send = (req, res, next) => {
 
     let mailOptions = {
         from: "'"+req.body.name+"<"+req.body.email+">'",
-        to: 'kosmos2uh@gmail.com',
+        to: 'janusnic@gmail.com',
         subject: req.body.subject,
         text: 'You have a new submission with the following details... ' + req.body.message,
         html: '<p>You have a new submission with the following details... ' + req.body.message + '</p>'
