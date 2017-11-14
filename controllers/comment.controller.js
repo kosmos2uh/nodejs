@@ -11,11 +11,11 @@ let pusher = new Pusher({
 });
 
 exports.comment_post = (req, res, next) => {
-    let comment = new models.Comment(
+    /*let comment = new models.Comment(
       {
           author:{
               id: req.user._id,
-              username: req.user.profile.name,
+              username: req.user.profile.name
           },
           post: {
               id: req.body.post_id
@@ -31,11 +31,11 @@ exports.comment_post = (req, res, next) => {
             if (err) { return next(err); }
             console.log(comment);
             });
-      }
+      }*/
 
     let newComment = {
       name: req.user.profile.name,
-      email: req.user.email,
+      // email: req.user.email,
       comment: req.body.comment,
       _csrf: req.body._csrf
 

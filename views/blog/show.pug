@@ -17,27 +17,27 @@ block content
         if comments
           each comment in comments
             .col-sm-8
-                .panel.panel-white.post.panel-shadow
-                    .post-heading
-                      .pull-left.image
-                        img.img-circle.avatar(src='/images/user.jpg', alt='user profile image')
-                      .pull-left.meta
-                        .title.h5
-                          a(href='#')
-                            b #{comment.author.username}
-                          |  made a post.
-                        h6.text-muted.time #{comment.create_at}
+              .panel.panel-white.post.panel-shadow
+                .post-heading
+                  .pull-left.image
+                    img.img-circle.avatar(src='/images/user.jpg', alt='user profile image')
+                  .pull-left.meta
+                    .title.h5
+                      a(href='#')
+                        b #{comment.author.username}
+                      |  made a post.
+                    h6.text-muted.time #{comment.create_at}
 
-                    .post-description
-                      p
-                        | #{comment.content}
-                      .stats
-                        a.btn.btn-default.stat-item(href='#')
-                          i.fa.fa-thumbs-up.icon
-                          |  2
-                        a.btn.btn-default.stat-item(href='#')
-                          i.fa.fa-thumbs-down.icon
-                          |  12
+                .post-description
+                  p
+                    | #{comment.content}
+                  .stats
+                    a.btn.btn-default.stat-item(href='#')
+                      i.fa.fa-thumbs-up.icon
+                      |  2
+                    a.btn.btn-default.stat-item(href='#')
+                      i.fa.fa-thumbs-down.icon
+                      |  12
         hr
         if user
           block comment

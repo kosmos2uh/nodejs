@@ -17,7 +17,7 @@
 
     var serverUrl = "/",
         comments = [],
-        pusher = new Pusher('1aae17139b6f62752b02', {
+        pusher = new Pusher('75bf03ec03995b2f1076', {
           cluster: 'eu',
           encrypted: true
         }),
@@ -61,7 +61,7 @@
 
       xhr.onreadystatechange = function () {
         if (xhr.readyState != 4 || xhr.status != 200){
-          console.log("Error: " + xhr.status);
+          console.log("Error: " + xhr.statusText);
           return;
         }
 

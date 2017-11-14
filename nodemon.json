@@ -18,7 +18,8 @@
         "controllers/",
         "middleware/",
         "routes/",
-        "views/"
+        "views/",
+        "public/javascripts/comment.js"
       ],
       "env": {
         "NODE_ENV": "development"
