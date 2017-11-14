@@ -38,8 +38,8 @@ index: (req, res, next) => {
 
 list: (req, res, next) => {
 
-  var perPage = 2
-  var page = req.params.page || 1
+  var perPage = 2;
+  var page = req.params.page || 1;
 
   models.Post
         .find({})
@@ -47,7 +47,7 @@ list: (req, res, next) => {
         .limit(perPage)
         .exec(function(err, posts) {
             models.Post.count().exec(function(err, count) {
-                if (err) return next(err)
+                if (err) return next(err);
                 res.render('admin/posts/list', {
                     title: 'Posts List',
                     breadcrumb: 'Posts List',
