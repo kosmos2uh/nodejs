@@ -4,3 +4,4 @@ jspm_packages
 *.bak
 /.env.dev
 /.env
+!/public/js/tinymce/
