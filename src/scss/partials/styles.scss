@@ -1,0 +1,11 @@
+$blue: #3bbfce; /* цвет */
+$margin: 16px; /* отступ */
+$fontSize: 14px; /* размер текста */
+.testing {
+width: percentage(5/7);
+}
+.border {
+    padding: $margin / 2;
+    margin: $margin / 2;
+    border-color: $blue;
+}
